@@ -9,7 +9,8 @@ import Foundation
 
 typealias UsersInformation = [UserInfo]
 
-struct UserInfo: Codable {
+struct UserInfo: Codable, Identifiable {
+    var id = UUID()
     let name: String
     let email: String
     let address: String

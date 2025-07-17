@@ -11,6 +11,16 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             UserSearchView()
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .principal) {
+                        Text("Users")
+                            .font(.system(size: 18, weight: .bold))
+                            .foregroundColor(.black)
+                            .multilineTextAlignment(.center)
+                    }
+                }
+                
         }
     }
 }

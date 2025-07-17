@@ -11,6 +11,7 @@ class UserSearchViewModel: ObservableObject {
     @Published var usersInfo: [UserInfo] = []
     @Published var isLoading: Bool = false
     @Published var errorMessage: String?
+    @Published var userSearched: String = ""
     
     func getUsersInfo() async throws -> [UserInfo] {
         isLoading = true
