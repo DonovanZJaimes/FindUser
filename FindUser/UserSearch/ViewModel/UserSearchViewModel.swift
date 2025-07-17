@@ -7,6 +7,7 @@
 
 import Foundation
 
+@MainActor
 class UserSearchViewModel: ObservableObject {
     @Published var usersInfo: [UserInfo] = []
     @Published var isLoading: Bool = false
@@ -14,8 +15,8 @@ class UserSearchViewModel: ObservableObject {
     @Published var userSearched: String = ""
     
     func getUsersInfo() async throws -> [UserInfo] {
-        isLoading = true
-        errorMessage = nil
+            isLoading = true
+            errorMessage = nil
         let utilsJson = UtilsJson()
         let usersInfoMock = UsersInfoMock(jsonParser: utilsJson)
         do {
@@ -25,12 +26,23 @@ class UserSearchViewModel: ObservableObject {
         }
         catch {
             print(error.localizedDescription)
-            self.errorMessage = "No se pudo obtener la información de los usuarios"
+            errorMessage = "No se pudo obtener la información de los usuarios"
             isLoading = false
+            
             return []
         }
         
         
+    }
+
+    
+    
+    func filteredUsers() -> [UserInfo] {
+        if userSearched.isEmpty {
+            return []
+        } else {
+            return usersInfo.filter{ $0.name.lowercased().contains(userSearched.lowercased()) }
+        }
     }
     
 }

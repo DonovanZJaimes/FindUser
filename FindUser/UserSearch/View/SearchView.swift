@@ -25,6 +25,7 @@ struct SearchView: View {
                 
                 Button {
                     print("buscar \(userSearchViewModel.userSearched)")
+                    loadDataAndFilter()
                 } label: {
                     Image(systemName: "plus.magnifyingglass")
                         .resizable()
@@ -36,9 +37,28 @@ struct SearchView: View {
 
         }
     }
+    
+    private func loadDataAndFilter() {
+        Task {
+            do {
+                let users = try await userSearchViewModel.getUsersInfo()
+                userSearchViewModel.usersInfo = users
+                
+                let filteredUsers = userSearchViewModel.filteredUsers()
+                userSearchViewModel.usersInfo = filteredUsers
+            } catch {
+                print("Error al obtener usuarios: \(error.localizedDescription)")
+                userSearchViewModel.errorMessage = "Error al cargar los datos"
+            }
+        }
+    }
 }
 
 #Preview(traits: .sizeThatFitsLayout) {
     SearchView(userSearchViewModel: UserSearchViewModel())
         .padding(.all, 20)
 }
+
+
+
+
