@@ -8,41 +8,46 @@
 import Foundation
 
 @MainActor
-class UserSearchViewModel: ObservableObject {
-    @Published var usersInfo: [UserInfo] = []
-    @Published var isLoading: Bool = false
-    @Published var errorMessage: String?
-    @Published var userSearched: String = ""
-    
-    func getUsersInfo() async throws -> [UserInfo] {
-            isLoading = true
-            errorMessage = nil
-        let utilsJson = UtilsJson()
-        let usersInfoMock = UsersInfoMock(jsonParser: utilsJson)
-        do {
-            let users = try await usersInfoMock.getUsers()
-            isLoading = false
-            return users
-        }
-        catch {
-            print(error.localizedDescription)
-            errorMessage = "No se pudo obtener la información de los usuarios"
-            isLoading = false
-            
-            return []
-        }
-        
-        
-    }
 
+class UserSearchViewModel: ObservableObject {
+    @Published var userSearched = ""  // What the user writes in the TextField
+    @Published var usersInfo: [UserInfo] = []  // List of filtered users
+    @Published var hasSearched = false // Indicator of whether a search has been performed
+    @Published var isLoading = false  // Load indicator (to display the ProgressView)
+    
+    private var allUsers: [UserInfo] = []  // All users, unfiltered
+    private let usersInfoMock = UsersInfoMock(jsonParser: UtilsJson())
     
     
-    func filteredUsers() -> [UserInfo] {
-        if userSearched.isEmpty {
-            return []
-        } else {
-            return usersInfo.filter{ $0.name.lowercased().contains(userSearched.lowercased()) }
+    // Function to load users
+    func loadUsers() async {
+        // We only load users if they have not been loaded before.
+        if allUsers.isEmpty {
+            do {
+                let users = try await usersInfoMock.getUsers()
+                self.allUsers = users
+            } catch {
+                print("Error al cargar usuarios: \(error)")
+            }
         }
+    }
+  
+    // Function to filter users
+    func filterUsers() {
+        hasSearched = true  // The search was performed
+        isLoading = true  // We start loading, we show the ProgressView
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            if self.userSearched.isEmpty {
+                self.usersInfo = []  // Do not display anything if the field is empty
+            } else {
+                self.usersInfo = self.allUsers.filter { user in
+                    user.name.lowercased().contains(self.userSearched.lowercased())
+                }
+            }
+            self.isLoading = false  // After 1 second, we finish loading
+        }
+        
     }
     
 }

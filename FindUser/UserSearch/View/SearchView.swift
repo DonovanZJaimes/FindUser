@@ -12,7 +12,7 @@ struct SearchView: View {
     var body: some View {
         VStack {
             HStack(alignment: .center, spacing: 20) {
-                TextField("Find User...", text: $userSearchViewModel.userSearched)
+                TextField("Buscar Usuario...", text: $userSearchViewModel.userSearched)
                     .padding(.horizontal, 10)
                     .frame(height:  48)
                     .keyboardType(.alphabet)
@@ -24,8 +24,10 @@ struct SearchView: View {
                     }
                 
                 Button {
-                    print("buscar \(userSearchViewModel.userSearched)")
-                    loadDataAndFilter()
+                    Task {
+                        await userSearchViewModel.loadUsers()
+                        userSearchViewModel.filterUsers()
+                    }
                 } label: {
                     Image(systemName: "plus.magnifyingglass")
                         .resizable()
@@ -38,20 +40,7 @@ struct SearchView: View {
         }
     }
     
-    private func loadDataAndFilter() {
-        Task {
-            do {
-                let users = try await userSearchViewModel.getUsersInfo()
-                userSearchViewModel.usersInfo = users
-                
-                let filteredUsers = userSearchViewModel.filteredUsers()
-                userSearchViewModel.usersInfo = filteredUsers
-            } catch {
-                print("Error al obtener usuarios: \(error.localizedDescription)")
-                userSearchViewModel.errorMessage = "Error al cargar los datos"
-            }
-        }
-    }
+   
 }
 
 #Preview(traits: .sizeThatFitsLayout) {

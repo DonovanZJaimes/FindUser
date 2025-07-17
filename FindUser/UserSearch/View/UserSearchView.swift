@@ -8,79 +8,67 @@
 import SwiftUI
 
 struct UserSearchView: View {
-    @State private var  users = [UserInfo]()
     @StateObject private var userSearchViewModel = UserSearchViewModel()
     
     var body: some View {
         VStack {
-            // Error handling
-            if let errorMessage = userSearchViewModel.errorMessage {
-                errorView(message: errorMessage)
-            }
-            
-            // Charging indicator
-            if userSearchViewModel.isLoading {
-                loadingView()
-            } else {
-                if users.isEmpty {
-                    initialMessageView
-                } else {
-                    contentView
-                }
-            }
-        }
-        .onAppear{
-            loadData()
+            contentView
         }
         .background(Color.background)
-    }
-    
-    // Initial message when the list is empty
-    private var initialMessageView: some View {
-        VStack {
-            Text("Usa el cuadro de texto para buscar un usuario")
-                .font(.title2)
-                .foregroundColor(.gray)
-                .padding()
-        }
+        .padding()
     }
     
     // View to display the data
-    private func loadData() {
-        Task {
-            do {
-                users = try await userSearchViewModel.getUsersInfo()
-            } catch {
-                userSearchViewModel.errorMessage = "Error al cargar los datos"
-            }
-        }
-    }
-    
-    // Vista para mostrar los datos
     private var contentView: some View {
         VStack(spacing: 20) {
             SearchView(userSearchViewModel: userSearchViewModel)
                 .padding(.horizontal, 20)
-            ListView(users: $userSearchViewModel.usersInfo)
+            
+            // Show the ProgressView when the search is in progress
+            if userSearchViewModel.isLoading {
+                ProgressView("Buscando...")
+                    .progressViewStyle(CircularProgressViewStyle())
+                    .padding()
+            } else {
+                // Display the corresponding message according to the search status
+                if userSearchViewModel.userSearched.isEmpty && !userSearchViewModel.hasSearched {
+                    noSearchMessage
+                } else if userSearchViewModel.hasSearched && userSearchViewModel.usersInfo.isEmpty {
+                    noUsersFoundMessage
+                } else {
+                    usersList
+                }
+            }
+            
+            Spacer()
         }
     }
     
-    // View to display an error
-    private func errorView(message: String) -> some View {
-        Text(message)
-            .foregroundColor(.red)
+    // View for the message when no search has been performed
+    private var noSearchMessage: some View {
+        Text("Por favor, ingrese un nombre para buscar.")
+            .font(.body)
+            .foregroundColor(.gray)
             .padding()
-            .background(RoundedRectangle(cornerRadius: 8).fill(Color.yellow.opacity(0.2)))
-            .padding(.horizontal, 20)
     }
     
-    // View to display the load indicator
-    private func loadingView() -> some View {
-        ProgressView("Loading user data...")
-            .progressViewStyle(CircularProgressViewStyle(tint: .blue))
-            .padding(.top, 20)
+    // View for the message when no users are found
+    private var noUsersFoundMessage: some View {
+        VStack {
+            Image("NoUsers")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 300, height: 300)
+        }
+        .padding()
+    }
+    
+    // View for the list of users
+    private var usersList: some View {
+        ListView(users: $userSearchViewModel.usersInfo)
     }
 }
+
 
 
 #Preview {

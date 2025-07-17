@@ -14,7 +14,7 @@ struct ContentView: View {
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .principal) {
-                        Text("Users")
+                        Text("Usuarios")
                             .font(.system(size: 18, weight: .bold))
                             .foregroundColor(.colorPurple1)
                             .multilineTextAlignment(.center)
