@@ -1,0 +1,129 @@
+[
+  {
+    "nombre": "Juan Pérez",
+    "correo_electronico": "juan.perez@dominio.com",
+    "telefono": "+1234567890",
+    "direccion": "Calle Ficticia 123, Ciudad Imaginaria, País"
+  },
+  {
+    "nombre": "Ana Gómez",
+    "correo_electronico": "ana.gomez@dominio.com",
+    "telefono": "+1234567891",
+    "direccion": "Avenida Central 456, Ciudad Nueva, País"
+  },
+  {
+    "nombre": "Carlos Rodríguez",
+    "correo_electronico": "carlos.rodriguez@dominio.com",
+    "telefono": "+1234567892",
+    "direccion": "Calle de la Paz 789, Pueblo Feliz, País"
+  },
+  {
+    "nombre": "María López",
+    "correo_electronico": "maria.lopez@dominio.com",
+    "telefono": "+1234567893",
+    "direccion": "Ruta del Sol 1011, Ciudad del Sol, País"
+  },
+  {
+    "nombre": "Luis Martínez",
+    "correo_electronico": "luis.martinez@dominio.com",
+    "telefono": "+1234567894",
+    "direccion": "Plaza Principal 2022, Barrio Alegre, País"
+  },
+  {
+    "nombre": "Laura Sánchez",
+    "correo_electronico": "laura.sanchez@dominio.com",
+    "telefono": "+1234567895",
+    "direccion": "Calle del Mar 3033, Costa Azul, País"
+  },
+  {
+    "nombre": "José Fernández",
+    "correo_electronico": "jose.fernandez@dominio.com",
+    "telefono": "+1234567896",
+    "direccion": "Avenida de la Libertad 4044, Capital Grande, País"
+  },
+  {
+    "nombre": "Isabel Pérez",
+    "correo_electronico": "isabel.perez@dominio.com",
+    "telefono": "+1234567897",
+    "direccion": "Calle de la Montaña 5055, Pueblo Alto, País"
+  },
+  {
+    "nombre": "Pedro Díaz",
+    "correo_electronico": "pedro.diaz@dominio.com",
+    "telefono": "+1234567898",
+    "direccion": "Calle Real 6066, Barrio Histórico, País"
+  },
+  {
+    "nombre": "Carmen Ruiz",
+    "correo_electronico": "carmen.ruiz@dominio.com",
+    "telefono": "+1234567899",
+    "direccion": "Avenida del Parque 7077, Ciudad Verde, País"
+  },
+  {
+    "nombre": "Fernando González",
+    "correo_electronico": "fernando.gonzalez@dominio.com",
+    "telefono": "+1234567900",
+    "direccion": "Calle de los Árboles 8088, Ciudad Ecológica, País"
+  },
+  {
+    "nombre": "Elena Fernández",
+    "correo_electronico": "elena.fernandez@dominio.com",
+    "telefono": "+1234567901",
+    "direccion": "Calle de los Pinos 9099, Colonia Bosque, País"
+  },
+  {
+    "nombre": "Raúl Sánchez",
+    "correo_electronico": "raul.sanchez@dominio.com",
+    "telefono": "+1234567902",
+    "direccion": "Avenida del Lago 10010, Ciudad Luminosa, País"
+  },
+  {
+    "nombre": "Beatriz García",
+    "correo_electronico": "beatriz.garcia@dominio.com",
+    "telefono": "+1234567903",
+    "direccion": "Calle del Río 11011, Barrio Fluvial, País"
+  },
+  {
+    "nombre": "Víctor López",
+    "correo_electronico": "victor.lopez@dominio.com",
+    "telefono": "+1234567904",
+    "direccion": "Calle del Viento 12012, Ciudad Ventosa, País"
+  },
+  {
+    "nombre": "Marta Álvarez",
+    "correo_electronico": "marta.alvarez@dominio.com",
+    "telefono": "+1234567905",
+    "direccion": "Calle del Sol 13013, Pueblo Soleado, País"
+  },
+  {
+    "nombre": "Álvaro Rodríguez",
+    "correo_electronico": "alvaro.rodriguez@dominio.com",
+    "telefono": "+1234567906",
+    "direccion": "Avenida del Río 14014, Ciudad Acuática, País"
+  },
+  {
+    "nombre": "Dolores Martínez",
+    "correo_electronico": "dolores.martinez@dominio.com",
+    "telefono": "+1234567907",
+    "direccion": "Calle del Fuego 15015, Ciudad Caliente, País"
+  },
+  {
+    "nombre": "Juanita Morales",
+    "correo_electronico": "juanita.morales@dominio.com",
+    "telefono": "+1234567908",
+    "direccion": "Avenida de la Estrella 16016, Ciudad Nocturna, País"
+  },
+  {
+    "nombre": "Jorge Ramírez",
+    "correo_electronico": "jorge.ramirez@dominio.com",
+    "telefono": "+1234567909",
+    "direccion": "Calle del Horizonte 17017, Ciudad Lejana, País"
+  },
+  {
+    "nombre": "Silvia Torres",
+    "correo_electronico": "silvia.torres@dominio.com",
+    "telefono": "+1234567910",
+    "direccion": "Avenida Central 18018, Ciudad Global, País"
+  }
+]
+
