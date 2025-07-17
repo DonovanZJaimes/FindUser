@@ -12,15 +12,16 @@ struct UserCellView: View {
     var body: some View {
         NavigationLink(destination: UserDetailView(user: $user)) {
             RoundedRectangle(cornerRadius: 20, style: .circular)
-                .foregroundStyle(.background)
+                .foregroundStyle(Color.background)
                 .overlay {
                     HStack {
                         VStack (alignment: .leading, spacing: 10){
                             Text(user.name)
                                 .bold()
+                                .foregroundStyle(Color.colorPurple2)
                             Text(user.email)
                                 .padding(.leading, 10)
-                                .foregroundStyle(.gray)
+                                .foregroundStyle(.secondary)
                         }
                         .padding(.leading, 25)
                         Spacer()
@@ -29,6 +30,7 @@ struct UserCellView: View {
                 .frame(maxWidth: UIScreen.main.bounds.width)
                 .frame(height: 50)
                 .padding()
+                
         }
         .buttonStyle(PlainButtonStyle())
     }

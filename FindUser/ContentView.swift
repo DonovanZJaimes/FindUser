@@ -16,7 +16,7 @@ struct ContentView: View {
                     ToolbarItem(placement: .principal) {
                         Text("Users")
                             .font(.system(size: 18, weight: .bold))
-                            .foregroundColor(.black)
+                            .foregroundColor(.colorPurple1)
                             .multilineTextAlignment(.center)
                     }
                 }

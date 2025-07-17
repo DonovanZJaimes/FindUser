@@ -9,6 +9,7 @@ import SwiftUI
 struct UserDetailView: View {
     @Binding var user: UserInfo
     @State private var isVisible = false
+    @Environment(\.presentationMode) var presentationMode  // We use this property to control backward navigation
 
     var body: some View {
         ScrollView {
@@ -19,6 +20,7 @@ struct UserDetailView: View {
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .padding(.bottom, 10)
+                    .foregroundStyle(Color.colorPurple1)
                 
                 // User information with icons
                 userInfoRow(title: "Email", value: user.email, icon: "envelope.fill")
@@ -36,14 +38,31 @@ struct UserDetailView: View {
                         }
                     }
         }
-        .background(Color(.systemGray6))
+        .background(Color.background)
+        .toolbar {
+                   ToolbarItem(placement: .principal) {
+                       Text("User Details")
+                           .font(.title)
+                           .foregroundColor(Color.colorPurple2)
+                   }
+               }
+        .navigationBarBackButtonHidden(true)
+               .navigationBarItems(leading: Button(action: {
+                   self.presentationMode.wrappedValue.dismiss()   // Navigate backward manually
+               }) {
+                   Image(systemName: "arrow.left.circle.fill")
+                       .foregroundColor(.colorPurple2)
+                       .font(.title)
+               })
+        
+        
     }
     
     // Auxiliary view for displaying rows of information with icons
     private func userInfoRow(title: String, value: String, icon: String) -> some View {
         HStack {
             Image(systemName: icon)
-                .foregroundColor(.blue)
+                .foregroundColor(.colorPurple1)
             Text("\(title):")
                 .font(.headline)
                 .foregroundColor(.black)

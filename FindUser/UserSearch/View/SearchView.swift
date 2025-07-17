@@ -19,8 +19,8 @@ struct SearchView: View {
                     .autocorrectionDisabled()
                     .overlay {
                         RoundedRectangle(cornerRadius: 12)
-                            .stroke(style: StrokeStyle(lineWidth: 1))
-                            .foregroundStyle(Color.black)
+                            .stroke(style: StrokeStyle(lineWidth: 1.5))
+                            .foregroundStyle(.colorPurple2)
                     }
                 
                 Button {
@@ -30,7 +30,7 @@ struct SearchView: View {
                     Image(systemName: "plus.magnifyingglass")
                         .resizable()
                         .frame(width: 40, height: 40)
-                        .foregroundStyle(.brown)
+                        .foregroundStyle(.colorPurple2)
                 }
             }
             

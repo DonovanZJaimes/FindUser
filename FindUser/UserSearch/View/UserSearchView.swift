@@ -32,7 +32,7 @@ struct UserSearchView: View {
         .onAppear{
             loadData()
         }
-        .background(Color.white)
+        .background(Color.background)
     }
     
     // Initial message when the list is empty
