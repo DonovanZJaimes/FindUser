@@ -15,7 +15,7 @@ class UserSearchViewModel: ObservableObject {
     @Published var hasSearched = false // Indicator of whether a search has been performed
     @Published var isLoading = false  // Load indicator (to display the ProgressView)
     
-    private var allUsers: [UserInfo] = []  // All users, unfiltered
+    var allUsers: [UserInfo] = []  // All users, unfiltered
     private let usersInfoMock = UsersInfoMock(jsonParser: UtilsJson())
     
     
