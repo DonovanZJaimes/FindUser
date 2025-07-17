@@ -10,24 +10,27 @@ import SwiftUI
 struct UserCellView: View {
     @Binding var user: UserInfo
     var body: some View {
-        RoundedRectangle(cornerRadius: 20, style: .circular)
-            .foregroundStyle(.background)
-            .overlay {
-                HStack {
-                    VStack (alignment: .leading, spacing: 10){
-                        Text(user.name)
-                            .bold()
-                        Text(user.email)
-                            .padding(.leading, 10)
-                            .foregroundStyle(.gray)
+        NavigationLink(destination: UserDetailView(user: $user)) {
+            RoundedRectangle(cornerRadius: 20, style: .circular)
+                .foregroundStyle(.background)
+                .overlay {
+                    HStack {
+                        VStack (alignment: .leading, spacing: 10){
+                            Text(user.name)
+                                .bold()
+                            Text(user.email)
+                                .padding(.leading, 10)
+                                .foregroundStyle(.gray)
+                        }
+                        .padding(.leading, 25)
+                        Spacer()
                     }
-                    .padding(.leading, 25)
-                    Spacer()
                 }
-            }
-            .frame(maxWidth: UIScreen.main.bounds.width)
-            .frame(height: 50)
-            .padding()
+                .frame(maxWidth: UIScreen.main.bounds.width)
+                .frame(height: 50)
+                .padding()
+        }
+        .buttonStyle(PlainButtonStyle())
     }
 }
 
