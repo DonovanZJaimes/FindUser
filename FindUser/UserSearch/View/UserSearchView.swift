@@ -8,28 +8,29 @@
 import SwiftUI
 
 struct UserSearchView: View {
-    //let userInfo =  UsersInfoMock()
-    @State private var  userss = [UserInfo]()
+    @State private var  users = [UserInfo]()
+    @StateObject private var userSearchViewModel = UserSearchViewModel()
     
-    
-    // Ejemplo de uso
-    
-
-    
+   
     var body: some View {
         VStack {
-            Text("Cantidad de usuarios: \(userss.count)")
-            Text("\(userss)")
-                }
-            .onAppear{
-                Task {
-                    let utilsJson = UtilsJson()
-                    let usersInfoMock = UsersInfoMock(jsonParser: utilsJson)
-                    let userrIn = try await usersInfoMock.getUsers()
-                    //userInfo.getUsers()
-                    userss = userrIn
-                }
+            if let errorMessage = userSearchViewModel.errorMessage {
+                Text(errorMessage).foregroundStyle(.red)
             }
+            if userSearchViewModel.isLoading {
+                ProgressView("Loading user data...")
+            } else {
+                Text("Cantidad de usuarios: \(users.count)")
+                Text("\(users)")
+            }
+            
+            
+        }
+        .onAppear{
+            Task {
+                users = try await userSearchViewModel.getUsersInfo()
+            }
+        }
     }
 }
 
